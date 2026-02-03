@@ -21,7 +21,7 @@ jobs:
         run: |
           python app/ml/retrain_model.py
       - name: Upload model artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: sales_model
           path: app/models/sales_model.pkl
