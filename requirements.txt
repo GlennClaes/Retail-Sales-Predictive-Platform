@@ -1,0 +1,7 @@
+fastapi
+uvicorn
+pandas
+scikit-learn
+joblib
+sqlalchemy
+cx_Oracle   # als je Oracle DB gebruikt
