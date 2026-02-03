@@ -11,10 +11,14 @@ class ChangeHandler(FileSystemEventHandler):
         if event.src_path.endswith(".csv") or event.src_path.endswith(".py"):
             print(f"Detected change: {event.src_path}")
             os.chdir(REPO_PATH)
-            # Auto-commit en push
+            
+            # Auto-commit en push alleen als er iets te committen is
             subprocess.run(["git", "add", "."])
-            subprocess.run(["git", "commit", "-m", "Auto-update changes"])
-            subprocess.run(["git", "push", "origin", "main"])
+            result = subprocess.run(["git", "diff", "--cached", "--quiet"])
+            if result.returncode != 0:  # 0 = geen veranderingen
+                subprocess.run(["git", "commit", "-m", "Auto-update changes"])
+                subprocess.run(["git", "push", "origin", "main"])
+            
             # Pull laatste changes en retrain model lokaal
             subprocess.run(["git", "pull", "--rebase"])
             subprocess.run(["python", "app/ml/retrain_model.py"])
