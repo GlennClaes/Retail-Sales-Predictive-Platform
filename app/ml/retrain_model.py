@@ -4,7 +4,7 @@ from sklearn.ensemble import RandomForestRegressor
 import joblib
 
 # Pad instellingen
-PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../.."))
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 DATA_PATH = os.path.join(PROJECT_ROOT, "data", "historical_sales.csv")
 MODEL_PATH = os.path.join(PROJECT_ROOT, "models", "sales_model.pkl")
 
